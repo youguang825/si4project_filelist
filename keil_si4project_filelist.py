@@ -13,52 +13,10 @@ import re
 projectfilename = ''
 sourcefile = ''
 outputfile = ''
-TOOLKIT_PATH = ''
 
 for entry in os.scandir():
     if entry.is_file():
-        if entry.name.endswith('.eww'):
-            projectfilename = entry.name
-
-            # check IAR install path and get TOOLKIT_DIR
-            if os.path.exists(r'C:\Program Files (x86)\IAR Systems') == False:
-                print(r'Please input the TOOLKIT path(e.g. C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm) or press ENTER to ignor')
-                TOOLKIT_PATH = input()
-                if os.path.exists(TOOLKIT_PATH) == False:
-                    print('Path not exist, ignor this part of file')
-                    TOOLKIT_PATH = ''
-                elif os.path.exists(os.path.join(TOOLKIT_PATH, 'inc')) == False:
-                    print('Path error, ignor this part of file')
-                    TOOLKIT_PATH = ''
-            else:
-                for DIR in os.scandir(r'C:\Program Files (x86)\IAR Systems'):
-                    if DIR.name.startswith('Embedded Workbench'):
-                        TOOLKIT_PATH = r'C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm'.replace(
-                            'Embedded Workbench 8.0', DIR.name)
-
-                # find current target
-            wsdtfile = os.path.join(os.getcwd(), 'settings')
-            wsdtfile = os.path.join(
-                wsdtfile, entry.name.replace('.eww', '.wsdt'))
-
-            if os.path.exists(wsdtfile):
-                tree = ET.ElementTree(file=wsdtfile)
-                ConfigDictionary = tree.find('ConfigDictionary')
-                CurrentConfigs = ConfigDictionary.find('CurrentConfigs')
-                TargetName = CurrentConfigs.find('Project').text.split('/')[1]
-
-                depfilename = CurrentConfigs.find(
-                    'Project').text.split('/')[0] + '.dep'
-                if os.path.exists(depfilename):
-                    sourcefile = depfilename
-                    outputfile = os.path.splitext(projectfilename)[0]
-                    break
-
-            print('Please build the project once')
-            input()
-            sys.exit(0)
-
-        elif entry.name.endswith('.uvproj') or entry.name.endswith('.uvprojx'):
+        if entry.name.endswith('.uvproj') or entry.name.endswith('.uvprojx'):
             projectfilename = entry.name
 
             if entry.name.endswith('.uvproj'):
@@ -125,24 +83,7 @@ if '' == projectfilename:
 # 2、parse the seleted dep file
 parsefile = open(sourcefile, 'r')
 si4filelist = []
-if projectfilename.endswith('.eww'):
-    tree = ET.ElementTree(file=parsefile)
-    for tag in tree.findall('configuration'):
-        if TargetName == tag.find('name').text:
-            output_tag = tag.find('outputs')
-
-            for elem in output_tag.findall('file'):
-                if elem.text.startswith('$PROJ_DIR$'):
-                    if elem.text.endswith('.c') or elem.text.endswith('.s') or elem.text.endswith('.h'):
-                        si4filelist.append(os.path.abspath(
-                            elem.text.replace('$PROJ_DIR$', os.getcwd()))+'\n')
-                elif TOOLKIT_PATH != '' and elem.text.startswith('$TOOLKIT_DIR$'):
-                    if elem.text.endswith('.c') or elem.text.endswith('.s') or elem.text.endswith('.h'):
-                        si4filelist.append(elem.text.replace(
-                            '$TOOLKIT_DIR$', TOOLKIT_PATH)+'\n')
-            break
-
-elif projectfilename.endswith('.uvproj') or projectfilename.endswith('.uvprojx'):
+if projectfilename.endswith('.uvproj') or projectfilename.endswith('.uvprojx'):
     for line in parsefile.readlines():
         m = re.search(
             r"^F \(.*?\)(?=\([\dxa-fA-F]{10}\))|^I \(.*?\)(?=\([\dxa-fA-F]{10}\))", line)
