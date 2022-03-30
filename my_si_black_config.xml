@@ -2068,16 +2068,17 @@
 		<Style Name="Default Text" />
 		<Style
 			Name="Number"
+			ParentStyle="Ref to Const"
 			FontName="Consolas"
 			FontPitchFamily="1"
 			FontCharset="0"
-			ParentStyle="Ref to Const"
+			TextColor="#00e83a"
 			/>
 		<Style Name="Operator" TextColor="#00b700" />
 		<Style Name="Delimiter" TextColor="#feebab" />
 		<Style Name="Comment" TextColor="#10be10" />
 		<Style Name="String" FixedWhiteSpace="0" TextColor="#f2e006" />
-		<Style Name="Keyword" TextColor="#008000" />
+		<Style Name="Keyword" TextColor="#62abfd" />
 		<Style Name="Control" Bold="1" TextColor="#ef61af" />
 		<Style Name="Special" Bold="1" Italic="1" />
 		<Style Name="Boolean" TextColor="#fd22dc" BackColor="#2d2d2d" />
@@ -2088,14 +2089,14 @@
 			ParentStyle="Ref to Const"
 			/>
 		<Style Name="System" ParentStyle="Reference" />
-		<Style Name="Declaration" Bold="1" TextColor="#ffff00" />
+		<Style Name="Declaration" Bold="1" TextColor="#ffffff" />
 		<Style
 			Name="Ref To Local"
-			TextColor="#00b3b3"
 			ParentStyle="Reference"
+			TextColor="#ffffff"
 			/>
 		<Style Name="Reference" TextColor="#ff8040" />
-		<Style Name="Directive" ParentStyle="Control" TextColor="#ffd9e4" />
+		<Style Name="Directive" ParentStyle="Control" />
 		<Style
 			Name="Line Number"
 			TextColor="#c0c0c0"
@@ -2181,17 +2182,22 @@
 			/>
 		<Style
 			Name="Label"
-			TextColor="#ff0000"
-			Scale="110"
-			Underline="Single"
 			ParentStyle="Declaration"
+			Scale="140"
+			Bold="1"
+			Underline="Single"
+			TextColor="#ff0000"
 			/>
 		<Style Name="Declare Interface" ParentStyle="Declare Class" />
 		<Style Name="Declare Resource" ParentStyle="Declaration" />
 		<Style Name="File" ParentStyle="Declaration" />
 		<Style Name="Declare Custom Tag" ParentStyle="Declaration" />
 		<Style Name="Ref to Func" Bold="1" ParentStyle="Reference" />
-		<Style Name="Ref to Macro" ParentStyle="Ref to Func" />
+		<Style
+			Name="Ref to Macro"
+			ParentStyle="Ref to Func"
+			TextColor="#ff0000"
+			/>
 		<Style Name="Ref to Struct" ParentStyle="Reference" />
 		<Style Name="Ref to Union" ParentStyle="Reference" />
 		<Style Name="Ref to Typedef" ParentStyle="Reference" />
@@ -2211,13 +2217,33 @@
 		<Style Name="Ref to Custom" ParentStyle="Reference" />
 		<Style Name="Ref to EdMacro" ParentStyle="Reference" />
 		<Style Name="Ref to Class" ParentStyle="Reference" />
-		<Style Name="Ref to Method" Italic="1" ParentStyle="Ref to Func" />
-		<Style Name="Ref to EnumConst" ParentStyle="Ref to Const" />
+		<Style
+			Name="Ref to Method"
+			ParentStyle="Ref to Func"
+			Italic="1"
+			TextColor="#ffd9e4"
+			/>
+		<Style
+			Name="Ref to EnumConst"
+			ParentStyle="Ref to Const"
+			TextColor="#ff3e9e"
+			/>
 		<Style Name="Ref to Proto" ParentStyle="Ref to Func" />
 		<Style Name="Ref to Preproc" ParentStyle="Reference" />
 		<Style Name="Ref to Search" ParentStyle="Reference" />
-		<Style Name="Ref to Label" ParentStyle="Reference" />
-		<Style Name="Ref to Member" Italic="1" ParentStyle="Reference" />
+		<Style
+			Name="Ref to Label"
+			ParentStyle="Reference"
+			Scale="140"
+			Bold="1"
+			TextColor="#fd0273"
+			/>
+		<Style
+			Name="Ref to Member"
+			ParentStyle="Reference"
+			Italic="1"
+			TextColor="#00ffff"
+			/>
 		<Style Name="Ref to Interface" ParentStyle="Reference" />
 		<Style Name="Ref to Resource" ParentStyle="Reference" />
 		<Style Name="Ref to File" ParentStyle="Reference" />
@@ -2267,12 +2293,7 @@
 			Underline="Single"
 			ParentStyle="Declaration"
 			/>
-		<Style
-			Name="Auto Annotations"
-			ParentStyle="Comment"
-			Scale="90"
-			TextColor="#ffd9e4"
-			/>
+		<Style Name="Auto Annotations" ParentStyle="Comment" Scale="90" />
 		<Style Name="HTML or XML Element" />
 		<Style
 			Name="HTML Title"
@@ -2364,7 +2385,7 @@
 			FixedWhiteSpace="0"
 			ParentStyle="Comment"
 			/>
-		<Style Name="Instruction" ParentStyle="Control" TextColor="#ffd9e4" />
+		<Style Name="Instruction" ParentStyle="Control" />
 		<Style
 			Name="Reference Highlight"
 			Underline="Thick"
