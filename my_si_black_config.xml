@@ -7802,13 +7802,13 @@
 		<SymbolTypes All="1" />
 	</ProjectReport>
 	<SymbolPane
-		Width="321"
-		TextColor="#e1fdee"
+		Width="415"
+		TextColor="#e0fcfe"
 		BackColor="#2d2d2d"
 		ShowChanges="1"
 		ShowLongFunctions="1"
 		>
-		<Font name="Segoe UI" psize="11" fpfamily="34" charset="0" />
+		<Font name="Tahoma" psize="11" fpfamily="34" charset="0" />
 		<SymbolTypes All="1" />
 		<SymbolSorting
 			SortMode="1"
@@ -8380,7 +8380,7 @@
 				<Font name="宋体" psize="12" fpfamily="2" charset="0" />
 			</ListOptions>
 			<GraphOptions
-				LayoutStyle="1"
+				LayoutStyle="2"
 				NodeStyle="1"
 				LineWeight="1"
 				LineEndType="1"
